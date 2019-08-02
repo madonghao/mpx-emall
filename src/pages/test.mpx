@@ -1,0 +1,66 @@
+<template minapp='native' xlang='wxml'>
+  <view class='container'>
+      test
+    <view class="adv">
+        <em-advert width="{{size[0]}}" height="{{size[1]}}" imgsrc="{{getinitdata.operationCfg[0].picUrls[0]}}"></em-advert>
+    </view> 
+
+    <em-goodbox>
+        <em-spellList  spell="{{getrecommendV2}}"></em-spellList>
+    </em-goodbox>
+
+  </view>
+</template>
+
+<script>
+import { createPage } from '@mpxjs/core'
+import api from '../api/basisAPI'
+  createPage({
+    data: {
+        getinitdata:{},
+        size:['710rpx','140rpx'],
+        getrecommendV2:{}
+    },
+    onLoad() {
+        api.get("/index/index").then(res=>{
+            console.log(1111,res)
+            this.setData({
+                getinitdata:res.data
+            })
+        })
+        api.get('/recommendV2/2/16').then(res=>{
+            console.log(res)
+            this.setData({
+                getrecommendV2:res
+            })
+        })
+    }
+    
+  })
+</script>
+
+<style lang='less'>
+page {
+    background: #EEE;
+}
+.container {
+    padding: 0 20rpx;
+    .adv {
+        width: 710rpx;
+        height: 150rpx;
+        margin-bottom: 20rpx;
+    }
+
+} 
+</style>
+<script  type='application/json' lang='json'>
+{
+ "navigationBarTitleText": "搜索",
+ "usingComponents": {
+     "em-advert":"../components/advert/advert",
+     "em-spellList":"../components/spellList/spellList",
+     "em-goodbox":"../components/goodsbox/goodsbox"
+ }
+}
+</script>
+

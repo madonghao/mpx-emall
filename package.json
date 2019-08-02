@@ -13,7 +13,7 @@
     "prod:cross": "npm run prod --wx --ali --swan",
     "lint": "eslint --ext .js,.mpx src/",
     "help": "node ./build/build.js --help",
-    "back": "supervisor ./backstage/app.js"
+    "back": "node ./backstage/app.js"
   },
   "author": "Rebom <937412225@qq.com>",
   "license": "ISC",

@@ -11,9 +11,13 @@ page {
 
 <script>
   import { createPage } from '@mpxjs/core'
-
+  import api from '../api/basisAPI'
   createPage({
-    onLoad () {}
+    onLoad () {
+      api.get("/index/index").then(res=>{
+        console.log(res)
+      })
+    }
   })
 </script>
 
