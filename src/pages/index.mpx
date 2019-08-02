@@ -1,6 +1,13 @@
-<template>
+<template minapp='mpx' xlang='wxml'>
   <list></list>
 </template>
+
+<style lang="less">
+page {
+  padding: 0 20rpx;
+  background-color: #eee;
+}
+</style>
 
 <script>
   import { createPage } from '@mpxjs/core'
@@ -14,6 +21,11 @@
   {
     "usingComponents": {
       "list": "../components/list"
-    }
+    },
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "网易严选",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
   }
 </script>
