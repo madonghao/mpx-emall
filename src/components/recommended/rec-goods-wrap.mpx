@@ -1,0 +1,46 @@
+<template minapp='native' xlang='wxml'>
+  <component is="{{rectype}}" rec="{{recvalue}}"></component>
+</template>
+
+<script>
+import { createComponent } from '@mpxjs/core'
+  createComponent({
+    properties: {
+      recvalue: {
+        type: Object,
+        value: {},
+      }
+    },
+    data: {
+    },
+    computed: {
+      rectype() {
+        switch (this.data.recvalue.type) {
+          case 0:
+            return 'type1'
+          case 1:
+            return 'type2'
+          case 2:
+            return 'type3'
+          default:
+            break;
+        }
+      }
+    },
+  })
+</script>
+
+<style lang='less'>
+
+</style>
+<script  type='application/json' lang='json'>
+{ 
+ "component": true,
+ "usingComponents": {
+    "type1": "./rec-goods-type1",
+    "type2": "./rec-goods-type2",
+    "type3": "./rec-goods-type3"
+  }
+}
+</script>
+
