@@ -33,14 +33,14 @@ import { createComponent } from '@mpxjs/core'
 
 <style lang='less'>
 .goods {
-    width: 170rpx;
+    width: 150rpx;
     height: 270rpx;
     font-size: 24rpx;
     position: relative;
     overflow: hidden;
     image {
-        width: 170rpx;
-        height: 170rpx;
+        width: 160rpx;
+        height: 160rpx;
         background: #eee;
     }
 
@@ -64,7 +64,7 @@ import { createComponent } from '@mpxjs/core'
         border-radius: 10rpx;
         background: #f00;
         position: absolute;
-        top: 150rpx;
+        top: 140rpx;
         left: -45rpx;
     }
 }

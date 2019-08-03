@@ -20,12 +20,14 @@ createPage({
 
 <style lang="less" scoped>
 .goods {
-    width: 170rpx;
+    width: 160rpx;
     height: 270rpx;
     font-size: 24rpx;
+    float: left;
+    margin: 0 5rpx;
     image {
-        width: 170rpx;
-        height: 170rpx;
+        width: 160rpx;
+        height: 160rpx;
         background: #eee;
     }
 
