@@ -16,7 +16,7 @@ import { createComponent } from '@mpxjs/core'
     },
     pageShow() {
       // 所在页面显示之后就会执行一次
-      console.log(this.data.thumb)
+      // console.log(this.data.thumb)
 
     },
     pageHide() {
@@ -32,12 +32,12 @@ import { createComponent } from '@mpxjs/core'
 
 <style lang='less'>
 .goods{
-  width: 175rpx;
+  width: 165rpx;
   display: flex;
   flex-direction: column;
   .pic {
-    width: 175rpx;
-    height: 175rpx;
+    width: 160rpx;
+    height: 160rpx;
   }
   .title {
     width: 150rpx;

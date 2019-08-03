@@ -1,5 +1,21 @@
 <template minapp='mpx' xlang='wxml'>
-  <list></list>
+  <view class="content-wrap">
+    <wy-header maindata="{{indexData}}" />
+    <wy-ljf getinitdata="{{indexData}}" time="{{time}}" />
+    <wy-wrk swipeGoods="{{swipeGoods}}" />
+    <wy-wrk2 manufactureItems="{{manufactureItems}}" pic="{{pic}}" />
+    <view class="rec-wrap">
+      <block wx:for="{{recData}}">
+        <wy-mdh recvalue="{{item}}" />
+      </block>
+    </view>
+    <view class="loading-wrap" wx:if="{{hasMore}}">
+      <van-loading type="spinner" color="#00f" />
+    </view>
+    <view class="ts-txt" wx:if="{{!hasMore}}">
+      —— 更多内容，敬请期待 ——
+    </view>
+  </view>
 </template>
 
 <style lang="less">
@@ -7,24 +23,75 @@ page {
   padding: 0 20rpx;
   background-color: #eee;
 }
+.loading-wrap {
+  text-align: center;
+}
+.ts-txt {
+  text-align: center;
+  font-size: 30rpx;
+  color: #888;
+  padding: 30rpx 0;
+}
 </style>
 
 <script>
-  import { createPage } from '@mpxjs/core'
-  import api from '../api/basisAPI'
-  createPage({
-    onLoad () {
-      api.get("/index/index").then(res=>{
-        console.log(res)
-      })
+import { createPage } from "@mpxjs/core";
+import api from "../api/basisAPI";
+createPage({
+  data: {
+    indexData: {},
+    swipeGoods: [],
+    manufactureItems: [],
+    pic: [],
+    time: 0,
+    hasMore: true,
+    recData: [],
+  },
+  onLoad() {
+    api.get("/index/index").then(res => {
+      this.setData({
+        indexData: res.data,
+        swipeGoods: res.data.categoryItemsV4,
+        manufactureItems: res.data.manufactureItems.manufactureItems,
+        pic: res.data.manufactureItems.manufacturePic,
+        time: res.data.timePurchaseItems.leftTime
+      });
+    });
+    this.getRec(0);
+  },
+  getRec(id) {
+    api.get(`/rcmd/index/${id}/20`).then(res => {
+      console.log(res)
+      let result = res.data.rcmdItemList;
+      let recData = this.data.recData;
+      for (const item of result) {
+        recData.push(item);
+      }
+      this.setData({
+        hasMore: res.data.hasMore,
+        recData
+      });
+    });
+  },
+  onReachBottom() {
+    if (this.data.hasMore) {
+      let recData = this.data.recData;
+      let id = recData[recData.length - 1].id;
+      this.getRec(id);
     }
-  })
+  }
+});
 </script>
 
 <script type="application/json">
   {
     "usingComponents": {
-      "list": "../components/list"
+      "wy-header": "../components/main/main",
+      "wy-ljf": "../components/test",
+      "wy-wrk": "../components/buyblack",
+      "wy-wrk2": "../components/brandMake/goodsList",
+      "wy-mdh": "../components/recommended/rec-goods-wrap",
+      "van-loading": "vant-weapp/dist/loading"
     },
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",

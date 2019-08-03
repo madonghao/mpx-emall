@@ -1,9 +1,8 @@
 <template minapp='native' xlang='wxml'>
   <view class='container'>
-      test
     <view class="adv">
         <em-advert width="{{size[0]}}" height="{{size[1]}}" imgsrc="{{getinitdata.operationCfg[0].picUrls[0]}}"></em-advert>
-    </view> 
+    </view>
 
     <em-goodsbox title="今日必拼" text="好友正在拼>">
         <em-headpic slot="title" headpic="{{getrecommendV2.data.avatars}}"></em-headpic>
@@ -25,32 +24,32 @@
         <em-advert class="lf" width="345rpx" height="240rpx" imgsrc="{{getinitdata.operationCfg[1].picUrls[0]}}"></em-advert>
         <em-advert width="345rpx" height="240rpx" imgsrc="{{getinitdata.operationCfg[2].picUrls[0]}}"></em-advert>
     </view>
-
-    
   </view>
 </template>
 
 <script>
-import { createPage } from '@mpxjs/core'
+import { createComponent } from '@mpxjs/core'
 import api from '../api/basisAPI'
-  createPage({
+  createComponent({
+    properties: {
+        getinitdata: {
+            type: Object,
+            value: {},
+        },
+        time: {
+            type: Number,
+            value: 0,
+        },
+    },
     data: {
-        time:null,
         houre:0,
         min:0,
         second:0,
-        getinitdata:{},
         size:['710rpx','140rpx'],
         getrecommendV2:{}
     },
-    onLoad() {
-        api.get("/index/index").then(res=>{
-            console.log(1111,res.data)
-            this.setData({
-                getinitdata:res.data,
-                time:res.data.timePurchaseItems.leftTime
-            })
-        })
+    lifetimes: {
+    created: function() {
         api.get('/recommendV2/2/16').then(res=>{
             console.log(res)
             this.setData({
@@ -73,9 +72,7 @@ import api from '../api/basisAPI'
             })
         }, 1000);
     },
-   
-
-    
+  },
   })
 </script>
 
@@ -84,7 +81,6 @@ page {
     background: #EEE;
 }
 .container {
-    padding: 0 20rpx;
     .adv {
         width: 710rpx;
         height: 150rpx;
@@ -93,7 +89,6 @@ page {
 
     .goodslist {
         display: flex;
-        
     }
     .advert {
         display: flex;
@@ -117,14 +112,14 @@ page {
 </style>
 <script  type='application/json' lang='json'>
 {
- "navigationBarTitleText": "搜索",
- "usingComponents": {
-     "em-advert":"../components/advert/advert",
-     "em-spellList":"../components/spellList/spellList",
-     "em-goodsbox":"../components/goodsbox/goodsbox",
-     "em-headpic":"../components/headpic/headpic",
-     "em-goods-style4":"../components/goodsStyle/goodsStyle4"
- }
+    "component": true,
+    "usingComponents": {
+        "em-advert":"../components/advert/advert",
+        "em-spellList":"../components/spellList/spellList",
+        "em-goodsbox":"../components/goodsbox/goodsbox",
+        "em-headpic":"../components/headpic/headpic",
+        "em-goods-style4":"../components/goodsStyle/goodsStyle4"
+    }
 }
 </script>
 

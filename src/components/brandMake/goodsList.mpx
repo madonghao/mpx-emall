@@ -28,24 +28,22 @@ import { createComponent } from '@mpxjs/core'
 import api from '../../api/basisAPI'
   createComponent({
     properties: {
+      manufactureItems: {
+        type: Array,
+        value: [],
+      },
+      pic: {
+        type: String,
+        value: '',
+      }
 },
     data: {
-        manufactureItems:[],
-        pic:[],
         indicatorDots: false,
         autoplay: true,
         interval: 3000,
         duration: 1000
     },
     pageShow() {
-      api.get('/index/index').then(res=>{
-          console.log(res.data.manufactureItems)
-          this.setData({
-              manufactureItems:res.data.manufactureItems.manufactureItems,
-              pic:res.data.manufactureItems.manufacturePic
-          })
-          console.log(this.data.manufactureItems)
-      })
 
     },
     pageHide() {
@@ -67,7 +65,7 @@ import api from '../../api/basisAPI'
     flex-direction: column;
     border-radius: 5%;
     overflow: hidden;
-    width: 100%;
+    width: 710rpx;
     padding: 0 @padd-size;
     box-sizing: border-box;
     .top-pic{

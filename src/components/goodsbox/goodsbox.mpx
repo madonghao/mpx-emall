@@ -44,6 +44,7 @@ import { createComponent } from '@mpxjs/core'
 <style lang='less'>
 
  .container {
+   width: 690rpx;
    background: #fff;
    border-radius: 15rpx;
    padding-left: 20rpx;

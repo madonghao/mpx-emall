@@ -51,23 +51,18 @@
 import { createComponent } from "@mpxjs/core";
 import api from "../api/basisAPI";
 createComponent({
+  properties: {
+    swipeGoods: {
+      type: Array,
+      value: [],
+    },
+  },
   data: {
-    swipeGoods: [],
     indicatorDots: false,
     autoplay: true,
     interval: 3000,
     duration: 500
   },
-  lifetimes: {
-    attached: function() {
-      api.get("/index/index").then(res => {
-        this.setData({
-          swipeGoods: res.data.categoryItemsV4
-        });
-        console.log(res.data.categoryItemsV4);
-      });
-    }
-  }
 });
 </script>
 
@@ -79,9 +74,10 @@ createComponent({
   padding: @padd-size;
   background: linear-gradient(orange, #fff);
   justify-content: space-around;
+  width: 690rpx;
 
   .item {
-    width: 230rpx;
+    width: 220rpx;
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -101,11 +97,11 @@ createComponent({
     }
     .swipe-goods-box {
       padding: @padd-size;
-      width: 230rpx;
+      width: 220rpx;
       box-sizing: border-box;
       image {
-        width: 230rpx;
-        height: 230rpx;
+        width: 220rpx;
+        height: 220rpx;
       }
       .price {
         color: red;
