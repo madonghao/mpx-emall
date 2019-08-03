@@ -15,6 +15,7 @@ page {
   createPage({
     onLoad () {}
   })
+      for (const item of res.data.rcmdItemList) {
 </script>
 
 <script type="application/json">
