@@ -1,0 +1,159 @@
+<template>
+  <view class="swipe-goods">
+    <view wx:for="{{swipeGoods}}" wx:key="index" class="item">
+      <view class="huiji">{{item.name}}</view>
+      <view class="swipe-goods-box">
+        <swiper
+          indicator-dots="{{indicatorDots}}"
+          autoplay="{{autoplay}}"
+          interval="{{interval}}"
+          duration="{{duration}}"
+          circular
+        >
+          <block wx:for="{{item.itemList}}" wx:for-item="thumb">
+            <swiper-item>
+              <image src="{{thumb.scenePicUrl}}" class="slide-image" width="355" height="150" />
+              <view>
+                <text class="price">￥{{thumb.activityPrice || thumb.retailPrice}}</text>
+                <text
+                  wx:if="{{thumb.activityPrice && thumb.retailPrice}}"
+                  class="orig-price"
+                >{{thumb.retailPrice}}</text>
+              </view>
+              <view class="emblem" wx:if={{thumb.repoCount}}>
+                <view class="icon">
+                  <van-icon name="bag" />
+                </view>
+                <view class="emblem-title">回购指数 {{thumb.repoCount}}</view>
+              </view>
+              <view class="emblem" wx:if={{thumb.heat}}>
+                <view class="icon">
+                  <van-icon name="fire" />
+                </view>
+                <view class="emblem-title">热度 {{thumb.heat}}</view>
+              </view>
+              <view class="emblem"  wx:if={{thumb.goodRate}}>
+                <view class="icon">
+                  <van-icon name="friends" />
+                </view>
+                <view class="emblem-title">好评率 {{thumb.goodRate}}</view>
+              </view>
+              
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import { createComponent } from "@mpxjs/core";
+import api from "../api/basisAPI";
+createComponent({
+  data: {
+    swipeGoods: [],
+    indicatorDots: false,
+    autoplay: true,
+    interval: 3000,
+    duration: 500
+  },
+  lifetimes: {
+    attached: function() {
+      api.get("/index/index").then(res => {
+        this.setData({
+          swipeGoods: res.data.categoryItemsV4
+        });
+        console.log(res.data.categoryItemsV4);
+      });
+    }
+  }
+});
+</script>
+
+
+<style lang="less">
+@padd-size: 10rpx;
+.swipe-goods {
+  display: flex;
+  padding: @padd-size;
+  background: linear-gradient(orange, #fff);
+  justify-content: space-around;
+
+  .item {
+    width: 230rpx;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    .huiji {
+      padding: 0 10rpx;
+      line-height: 47rpx;
+      background-color: red;
+      color: rgb(243, 242, 242);
+      font-size: 30rpx;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 20;
+    }
+    .swipe-goods-box {
+      padding: @padd-size;
+      width: 230rpx;
+      box-sizing: border-box;
+      image {
+        width: 230rpx;
+        height: 230rpx;
+      }
+      .price {
+        color: red;
+        font-size: 24rpx;
+        margin-right: 10rpx;
+      }
+      .orig-price {
+        font-size: 24rpx;
+        text-decoration: line-through;
+      }
+      .emblem{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        .icon{
+          font-size: 40rpx;
+          color: #fff;
+          background-color:rgb(226, 113, 113);
+          text-align: center;
+          border-radius: 50%;
+          width: 50rpx;
+          height: 50rpx;
+          border:1px solid #fff;
+          position: absolute;
+          top: -3rpx;
+          left: -1rpx;
+        }
+        .emblem-title{
+          line-height: 40rpx;
+          color: red;
+          height: 40rpx;
+          padding-left: 58rpx;
+          box-sizing: border-box;
+          background-color:rgb(226, 146, 146);
+          width: 98%;
+          border-radius: 20rpx;
+          font-size: 20rpx;
+        }
+      }
+    }
+  }
+}
+</style>
+
+<script type="application/json">
+{
+   "usingComponents": {
+      "van-icon": "vant-weapp/dist/icon"
+    }
+}
+</script>
