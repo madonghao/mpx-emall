@@ -1,0 +1,80 @@
+<template minapp='native' xlang='wxml'>
+  <view class='container'>
+      <view class="goodsbox-hd">
+          <view class="hd-left">{{title}}</view>
+          <view class="hd-right">
+              <slot name="title"></slot>
+              <view class="more">{{text}}</view>
+          </view>
+      </view>
+      <view class="goodsbox-bot">
+          <slot name="cont"></slot>
+      </view>
+  </view>
+</template>
+
+<script>
+import { createComponent } from '@mpxjs/core'
+  createComponent({
+    options: {
+      multipleSlots: true // 在组件定义时的选项中启用多slot支持
+    },
+    properties: {
+      title:String,
+      text:String
+    },
+    data: {
+    },
+    pageShow() {
+      // 所在页面显示之后就会执行一次
+      console.log('page show')
+
+    },
+    pageHide() {
+      // 页面切入后台执行
+     console.log('page hide')
+
+    },
+    methods: {
+
+    }
+  })
+</script>
+
+<style lang='less'>
+
+ .container {
+   background: #fff;
+   border-radius: 15rpx;
+   padding-left: 20rpx;
+   margin-bottom: 20rpx; 
+ } 
+ .goodsbox-hd{
+     display: flex;
+     justify-content: space-between;
+     .hd-left {
+       font-size: 30rpx;
+       line-height: 80rpx;
+       padding-left: 15rpx;
+     }
+     .hd-right {
+       display: flex;
+       font-size: 24rpx;
+       line-height: 80rpx;
+       padding-right: 15rpx;
+     }
+ }
+ .goodsbox-bot{
+     width: 100%;
+
+ }
+</style>
+<script  type='application/json' lang='json'>
+{ 
+ "component": true,
+ "usingComponents": {
+
+    }
+}
+</script>
+

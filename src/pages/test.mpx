@@ -1,0 +1,130 @@
+<template minapp='native' xlang='wxml'>
+  <view class='container'>
+      test
+    <view class="adv">
+        <em-advert width="{{size[0]}}" height="{{size[1]}}" imgsrc="{{getinitdata.operationCfg[0].picUrls[0]}}"></em-advert>
+    </view> 
+
+    <em-goodsbox title="今日必拼" text="好友正在拼>">
+        <em-headpic slot="title" headpic="{{getrecommendV2.data.avatars}}"></em-headpic>
+        <em-spellList slot="cont" spell="{{getrecommendV2}}"></em-spellList>
+    </em-goodsbox>
+
+    <em-goodsbox title="限时抢购" text="更多抢购>">
+        <view slot="title">
+            <view class="count">{{houre}}</view>:
+            <view class="count">{{min}}</view>:
+            <view class="count">{{second}}</view>
+        </view>
+        <view slot="cont" class="goodslist">
+            <em-goods-style4  val="{{getinitdata}}"></em-goods-style4>
+        </view>
+    </em-goodsbox>
+
+    <view class="advert">
+        <em-advert class="lf" width="345rpx" height="240rpx" imgsrc="{{getinitdata.operationCfg[1].picUrls[0]}}"></em-advert>
+        <em-advert width="345rpx" height="240rpx" imgsrc="{{getinitdata.operationCfg[2].picUrls[0]}}"></em-advert>
+    </view>
+
+    
+  </view>
+</template>
+
+<script>
+import { createPage } from '@mpxjs/core'
+import api from '../api/basisAPI'
+  createPage({
+    data: {
+        time:null,
+        houre:0,
+        min:0,
+        second:0,
+        getinitdata:{},
+        size:['710rpx','140rpx'],
+        getrecommendV2:{}
+    },
+    onLoad() {
+        api.get("/index/index").then(res=>{
+            console.log(1111,res.data)
+            this.setData({
+                getinitdata:res.data,
+                time:res.data.timePurchaseItems.leftTime
+            })
+        })
+        api.get('/recommendV2/2/16').then(res=>{
+            console.log(res)
+            this.setData({
+                getrecommendV2:res
+            })
+        })
+        setInterval(()=>{
+            let h = this.houre
+            let m = this.min
+            let s = this.second
+            h = parseInt( (this.time/1000)/3600 )
+            m = parseInt( (this.time/1000 - h * 3600)/60 )
+            s = parseInt( (this.time/1000 - h * 3600 - m *60) )
+            let l = this.time - 1000
+            this.setData({
+                time:l,
+                houre:h,
+                min:m,
+                second:s
+            })
+        }, 1000);
+    },
+   
+
+    
+  })
+</script>
+
+<style lang='less'>
+page {
+    background: #EEE;
+}
+.container {
+    padding: 0 20rpx;
+    .adv {
+        width: 710rpx;
+        height: 150rpx;
+        margin-bottom: 20rpx;
+    }
+
+    .goodslist {
+        display: flex;
+        
+    }
+    .advert {
+        display: flex;
+    }
+
+    .lf {
+        margin-right: 20rpx;
+    }
+
+    .count {
+        width: 40rpx;
+        height: 40rpx;
+        border-radius: 50%;
+        color: #fff;
+        background: #333;
+        display: inline-block;
+        text-align: center;
+        line-height: 40rpx;
+    }
+} 
+</style>
+<script  type='application/json' lang='json'>
+{
+ "navigationBarTitleText": "搜索",
+ "usingComponents": {
+     "em-advert":"../components/advert/advert",
+     "em-spellList":"../components/spellList/spellList",
+     "em-goodsbox":"../components/goodsbox/goodsbox",
+     "em-headpic":"../components/headpic/headpic",
+     "em-goods-style4":"../components/goodsStyle/goodsStyle4"
+ }
+}
+</script>
+
