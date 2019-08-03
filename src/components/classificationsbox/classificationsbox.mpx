@@ -1,0 +1,74 @@
+<template minapp='native' xlang='wxml'>
+  <view class="container">
+    <classifications classificationsdata="{{classificationsboxdata}}" bind:change="change"></classifications>
+    <classcontent classcontentdata="{{getclasscontentdata}}"></classcontent>
+  </view>
+</template>
+
+<script>
+import { createComponent } from "@mpxjs/core";
+import api from "../../api/basisAPI.js";
+createComponent({
+  properties: {},
+  data: {
+    acindex: 0,
+    classificationsboxdata: "",
+    getclasscontentdata: ""
+  },
+  pageShow() {
+    // 所在页面显示之后就会执行一次
+    console.log("page show");
+  },
+  pageHide() {
+    // 页面切入后台执行
+    console.log("page hide");
+  },
+  lifetimes: {
+    attached: function() {
+      // 在组件实例进入页面节点树时执行
+      api.get("/list/categorySimple").then(res => {
+        this.setData({
+          classificationsboxdata: res.data.categoryList
+        });
+        this.change(`${this.classificationsboxdata[this.acindex]["id"]}`);
+      });
+    },
+    detached: function() {
+      // 在组件实例被从页面节点树移除时执行
+    }
+  },
+  methods: {
+    change(e) {
+      e = e.detail || e;
+      api.get(`/list/categorySimple/${e}`).then(result => {
+        this.setData({
+          getclasscontentdata: result.data.category
+        });
+      });
+    }
+  }
+});
+</script>
+
+<style lang="less" scoped>
+.container {
+  display: flex;
+  classifications {
+    flex-grow: 1;
+  }
+  classcontent {
+    flex-grow: 100;
+  }
+}
+</style>
+
+<script  type='application/json' lang='json'>
+{ 
+ "component": true,
+ "usingComponents": {
+      "classifications":"../classifications/classifications.mpx",
+      "classcontent":"../classcontent/classcontent.mpx"
+    }
+}
+</script>
+

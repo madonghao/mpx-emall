@@ -1,0 +1,77 @@
+<template minapp='native' xlang='wxml'>
+  <view class="container">
+    <view class="classifications-wrap">
+      <view
+        class="item"
+        wx:class="{{acClassindex === index?'ac':''}}"
+        wx:for="{{classificationsdata}}"
+        bindtap="changes(index)"
+      >{{item.name}}</view>
+    </view>
+  </view>
+</template>
+
+<script>
+import { createComponent } from "@mpxjs/core";
+createComponent({
+  properties: {
+    classificationsdata: Array
+  },
+  data: {
+    acClassindex: 0
+  },
+  pageShow() {
+    // 所在页面显示之后就会执行一次
+    console.log("zjpage show");
+  },
+  pageHide() {
+    // 页面切入后台执行
+    console.log("page hide");
+  },
+  methods: {
+    changes(e) {
+      this.setData({
+        acClassindex: e
+      });
+      console.log('object');
+      console.log(this.classificationsdata[e]);
+      let id = this.classificationsdata[e].id;
+      this.triggerEvent("change", id);
+    }
+  }
+});
+</script>
+
+<style lang="less" scoped>
+.container {
+  .classifications-wrap {
+    .item {
+      height: 60rpx;
+      line-height: 60rpx;
+      text-align: center;
+      position: relative;
+      font-size: 24rpx;
+      width: 120rpx;
+    }
+    .ac {
+      color: rgb(126, 2, 9);
+      font-weight: bolder;
+      &::before {
+        content: "";
+        position: absolute;
+        height: 40rpx;
+        top: 10rpx;
+        width: 5rpx;
+        background-color: rgb(126, 2, 9);
+        left: -15rpx;
+      }
+    }
+  }
+}
+</style>
+<script  type='application/json' lang='json'>
+{ 
+ "component": true
+}
+</script>
+
