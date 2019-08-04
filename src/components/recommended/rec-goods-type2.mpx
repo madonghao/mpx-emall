@@ -1,5 +1,5 @@
 <template minapp='native' xlang='wxml'>
-  <navigator class="wrap">
+  <navigator class="wrap" url="/pages/detail?id={{rec.id}}">
     <image class="img-wrap" src="{{picurl}}" />
     <view class="simple-wrap">{{simpletxt}}</view>
     <view class="bot-wrap">

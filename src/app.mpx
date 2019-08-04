@@ -14,7 +14,8 @@ App({});
   {
     "pages": [
       "./pages/index",
-      "./pages/classification"
+      "./pages/classification",
+      "./pages/detail"
     ],
     "tabBar": {
       "list": [{

@@ -54,6 +54,16 @@ app.get('/recommendV2/:orderType/:size', (req, succeed) => {
   })
 })
 
+// 获取商品详情API
+// https://miniapp.you.163.com/xhr/item/detail.json?itemId=3439006
+app.get('/itemid/id=:id', (req, succeed) => {
+  let { id } = req.params
+  axios.get(`https://miniapp.you.163.com/xhr/item/detail.json?itemId=${id}`).then(res => {
+    succeed.send(res.data)
+    succeed.end()
+  })
+})
+
 app.listen(3000, () => {
   console.log('Server is Running... @ http://localhost:3000')
 })
