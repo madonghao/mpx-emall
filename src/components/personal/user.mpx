@@ -1,0 +1,188 @@
+<template minapp='native' xlang='wxml'>
+  <view class='user'>
+     <ul>
+         <li>
+             <view class="top1"></view>
+             <p>我的订单</p>
+         </li>
+         <li class="bline">
+             <view class="top2"></view>
+             <p>周六拼团</p>
+         </li>
+         <li>
+             <view class="top3"></view>
+             <p>售后服务</p>
+         </li>
+         <li>
+             <view class="sec1"></view>
+             <p>邀请返利</p>
+         </li>
+         <li class="bline">
+             <view class="sec2"></view>
+             <p>优先购</p>
+         </li>
+         <li>
+             <view class="sec3"></view>
+             <p>积分中心</p>
+         </li>
+         <li>
+             <view class="tir1"></view>
+             <p>会员俱乐部</p>
+         </li>
+         <li class="bline">
+             <view class="tir2"></view>
+             <p>地址管理</p>
+         </li>
+         <li>
+             <view class="tir3"></view>
+             <p>账号安全</p>
+         </li>
+         <li>
+             <view class="last1"></view>
+             <p>帮助与客服</p>
+         </li>
+         <li class="bline">
+             <view class="last2"></view>
+             <p>意见反馈</p>
+         </li>
+         <li></li>
+        
+     </ul>
+       
+  </view>
+</template>
+
+<script>
+import { createComponent } from '@mpxjs/core'
+  createComponent({
+    properties: {
+},
+    data: {
+    },
+    pageShow() {
+      // 所在页面显示之后就会执行一次
+
+    },
+    pageHide() {
+      // 页面切入后台执行
+
+    },
+    methods: {
+    //     onTap(ev){
+    //         wx.qy.getAvatar ({
+    //         success: function(res) {
+    //         var avatar = res.avatar
+    //         },
+    //         fail: function(res) {
+    //         console.log(res.fail_reason)
+    //     }
+    //     })
+    //  }
+
+    }
+  })
+</script>
+
+<style lang="less" scope>
+.user{
+    margin-bottom:18rpx;
+}
+.basebc{
+    display: block;
+    width:50rpx;
+    height: 50rpx;
+    background-image: url("./icon.png");
+    background-repeat:no-repeat;
+    background-size: 32px 588px;
+}
+.bline{
+    border-left: 1px #d1d1d1 solid;
+    border-right: 1px #d1d1d1 solid;
+}
+
+.user ul{
+    display: flex;
+    flex-direction:row; 
+    flex-wrap: wrap;
+}
+.user li{
+    width: 250rpx;
+    display: flex;
+    flex-direction:column;
+    flex-shrink:1;
+    justify-content:center;
+    text-align: center;
+    height: 178rpx;
+    border-top:1px #d1d1d1 solid;
+    box-sizing: border-box;
+}
+.user p{
+    margin-top: 14rpx;
+    font-size: 22rpx;
+}
+.user li .top1{
+    .basebc();
+    background-position: left -387px;
+    margin:0 auto;
+}
+.user li .top2{
+    .basebc();
+    background-position: left -445px;
+    margin:0 auto;
+}
+.user li .top3{
+    .basebc();
+    background-position: left -148px;
+    margin:0 auto;
+}
+.user li .sec1{
+    .basebc();
+    background-position: left -357px;
+    margin:0 auto;
+}
+.user li .sec2{
+    .basebc();
+    background-position: left -505px;
+    margin:0 auto;
+}
+.user li .sec3{
+    .basebc();
+    background-position: left -474px;
+    margin:0 auto;
+}
+.user li .tir1{
+    .basebc();
+    background-position: left -417px;
+    margin:0 auto;
+}
+.user li .tir2{
+    .basebc();
+    background-position: left -116px;
+    margin:0 auto;
+}
+.user li .tir3{
+    .basebc();
+    background-position: left -563px;
+    margin:0 auto;
+}
+.user li .last1{
+    .basebc();
+    background-position: left -268px;
+    margin:0 auto;
+}
+.user li .last2{
+    .basebc();
+    background-position: left -212px;
+    margin:0 auto;
+}
+
+
+
+
+</style>
+<script  type='application/json' lang='json'>
+{ 
+ "component": true
+}
+</script>
+
