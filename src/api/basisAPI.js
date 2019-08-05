@@ -48,7 +48,7 @@ class API {
 // 默认请求配置
 API._config = {
   default: {
-    baseURL: 'http://192.168.1.14:3000',
+    baseURL: 'http://localhost:3000',
     headers: {
       'Authorization': ''
       // 'Accept': 'application/json, text/plain, */*',
