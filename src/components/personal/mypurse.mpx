@@ -1,0 +1,101 @@
+<template minapp='native' xlang='wxml'>
+  <view class='purse'>
+      <view class="title">我的资产</view> 
+      <view class="line">__________________________________________________</view>
+      <view class="my_purse">
+          <ul>
+              <li>￥0</li>
+              <li>回馈金</li>
+          </ul>
+          <ul>
+              <li>0</li>
+              <li>红包</li>
+          </ul>
+          <ul>
+              <li>0</li>
+              <li>优惠券</li>
+          </ul>
+          <ul>
+              <li>￥0</li>
+              <li>津贴</li>
+          </ul>
+          <ul class="last">
+              <li>0</li>
+              <li>礼品卡</li>
+          </ul>
+      </view>
+  </view>
+</template>
+
+<script>
+import { createComponent } from '@mpxjs/core'
+  createComponent({
+    properties: {
+},
+    data: {
+    },
+    pageShow() {
+      // 所在页面显示之后就会执行一次
+
+    },
+    pageHide() {
+      // 页面切入后台执行
+
+    },
+    methods: {
+    //     onTap(ev){
+    //         wx.qy.getAvatar ({
+    //         success: function(res) {
+    //         var avatar = res.avatar
+    //         },
+    //         fail: function(res) {
+    //         console.log(res.fail_reason)
+    //     }
+    //     })
+    //  }
+
+    }
+  })
+</script>
+
+<style lang="less" scope>
+ .title{
+     line-height: 70rpx;
+     margin-top: 34rpx;
+     margin-left: 30rpx;
+     color: #1b1b1b;
+ }
+ .line{
+     margin-left: 30rpx;
+     color: #d4d4d4;
+ }
+ .my_purse{
+    display: flex;
+    flex-direction: row;
+    margin-bottom:47rpx;
+ }
+ .my_purse ul{
+     display: flex;
+     flex-direction: column;
+     flex-grow: 1;
+     text-align: center;
+     font-size: 32rpx;
+     padding: 20rpx 0;
+ }
+ .my_purse li:first-child{
+     font-size: 26rpx;
+     font-weight: 600;
+ }
+ .my_purse ul li:last-child{
+     margin-top:18rpx;
+     color: #434343;
+     font-size: 26rpx;
+ }
+
+</style>
+<script  type='application/json' lang='json'>
+{ 
+ "component": true
+}
+</script>
+
